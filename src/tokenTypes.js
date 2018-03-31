@@ -1,5 +1,5 @@
 let [INTEGER, PLUS, MINUS, MUL, DIV, POW, EOF] = ['INTEGER', 'PLUS', 'MINUS', 'MUL', 'DIV', 'POW', 'EOF'];
 
-exports = {
+module.exports = {
     INTEGER, PLUS, MINUS, MUL, DIV, POW, EOF
 };
