@@ -112,11 +112,12 @@ class Interpreter {
 	}
 
 	expr() {
-		// let opers = {};
+    let opers = {};
+    
 		// opers[PLUS] = (a, b) => a + b;
 		// opers[MINUS] = (a, b) => a - b;
-		// opers[MUL] = (a, b) => a * b;
-		// opers[DIV] = (a, b) => a / b;
+		opers[MUL] = (a, b) => a * b;
+		opers[DIV] = (a, b) => a / b;
     // opers[POW] = (a, b) => Math.pow(a, b);
 
 		let result = this.factor();
@@ -124,13 +125,8 @@ class Interpreter {
 		while ([MUL, DIV].includes(this.currentToken.type)) {
 			let token = this.currentToken;
 
-			if (token.type === MUL) {
-				this.eat(MUL);
-				result = result * this.factor();
-			} else if (token.type == DIV) {
-        this.eat(DIV);
-				result = result / this.factor();
-      }
+      this.eat(token.type);
+      result = opers[token.type](result, this.factor());
 		}
 
 		return result;
