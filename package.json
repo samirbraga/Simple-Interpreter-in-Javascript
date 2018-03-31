@@ -1,8 +1,5 @@
 {
   "name": "simple-interpreter-in-js",
   "version": "1.0.0",
-  "description": "This project is based in the articles [Let’s Build A Simple Interpreter](https://ruslanspivak.com/lsbasi-part1/) part 1 to 14 of Ruslan Spivak, but rewrited in javascript.",
-  "scripts": {
-    "start": "node --experimental-modules test.mjs"
-  }
+  "description": "This project is based in the articles [Let’s Build A Simple Interpreter](https://ruslanspivak.com/lsbasi-part1/) part 1 to 14 of Ruslan Spivak, but rewrited in javascript."
 }

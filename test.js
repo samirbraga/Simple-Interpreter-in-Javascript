@@ -1,5 +1,5 @@
-import Lexer from './Lexer';
-import Interpreter from './Interpreter';
+const Lexer = require('./src/Lexer');
+const Interpreter = require('./src/Interpreter');
 
 let text = '2 * 5 / 4';
 let lexer = new Lexer(text);

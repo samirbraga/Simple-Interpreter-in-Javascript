@@ -1,5 +1,5 @@
-import tokenTypes from './tokenTypes';
-import Token from './Token';
+const tokenTypes = require('./tokenTypes');
+const Token = require('./Token');
 
 let {INTEGER, PLUS, MINUS, MUL, DIV, POW, EOF} = tokenTypes;
 
@@ -49,4 +49,4 @@ class Interpreter {
 	}
 }
 
-export default Interpreter;
+module.exports = Interpreter;

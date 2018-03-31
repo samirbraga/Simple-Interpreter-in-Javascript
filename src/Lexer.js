@@ -1,5 +1,5 @@
-import tokenTypes from './tokenTypes';
-import Token from './Token';
+const tokenTypes = require('./tokenTypes');
+const Token = require('./Token');
 
 let {INTEGER, PLUS, MINUS, MUL, DIV, POW, EOF} = tokenTypes;
 
@@ -75,4 +75,4 @@ class Lexer {
 	}
 }
 
-export default Lexer;
+module.exports = Lexer;

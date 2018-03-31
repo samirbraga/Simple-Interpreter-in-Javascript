@@ -1,4 +1,4 @@
-class Token {
+module.exports = class {
 	constructor(type, value) {
 		this.type = type;
 		this.value = value;
@@ -11,6 +11,4 @@ class Token {
 	repr() {
 		return this.str();
 	}
-}
-
-export default Token;
+};
