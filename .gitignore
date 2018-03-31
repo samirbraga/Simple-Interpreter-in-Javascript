@@ -1,3 +1,3 @@
 .vscode/**/*
 .eslintrc
-.Interpreter.py
+Interpreter.py
