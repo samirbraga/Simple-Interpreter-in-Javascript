@@ -1,10 +1,25 @@
+const readline = require('readline');
 const Lexer = require('./src/Lexer');
 const Interpreter = require('./src/Interpreter');
 
-let text = '2 + 5 * 4 + 2 / 1';
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 
-let lexer = new Lexer(text);
-let interpreter = new Interpreter(lexer);
-let result = interpreter.expr();
+function ask () {
+    
+    rl.question('calcx> ', (answer) => {
+        let text = answer;
+        
+        let lexer = new Lexer(text);
+        let interpreter = new Interpreter(lexer);
+        let result = interpreter.expr();
+        
+        console.log(result);
+        
+        ask();
+    });
+}
 
-console.log(result);
+ask();
