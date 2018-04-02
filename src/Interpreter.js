@@ -3,6 +3,15 @@ const Token = require('./Token');
 
 let {INTEGER, PLUS, MINUS, MUL, DIV, POW, EOF} = tokenTypes;
 
+let opers = {};
+
+opers[PLUS] = (a, b) => a + b;
+opers[MINUS] = (a, b) => a - b;
+opers[MUL] = (a, b) => a * b;
+opers[DIV] = (a, b) => a / b;
+// opers[POW] = (a, b) => Math.pow(a, b);
+
+
 class Interpreter {
 	constructor(lexer) {
 		this.lexer = lexer;
@@ -27,15 +36,7 @@ class Interpreter {
 		return token.value;
 	}
 
-	expr() {
-		let opers = {};
-
-		// opers[PLUS] = (a, b) => a + b;
-		// opers[MINUS] = (a, b) => a - b;
-		opers[MUL] = (a, b) => a * b;
-		opers[DIV] = (a, b) => a / b;
-		// opers[POW] = (a, b) => Math.pow(a, b);
-
+	term() {
 		let result = this.factor();
 
 		while ([MUL, DIV].includes(this.currentToken.type)) {
@@ -43,6 +44,19 @@ class Interpreter {
 			
 			this.eat(token.type);
 			result = opers[token.type](result, this.factor());
+		}
+
+		return result;
+	}
+
+	expr() {
+		let result = this.term();
+
+		while ([PLUS, MINUS].includes(this.currentToken.type)) {
+			let token = this.currentToken;
+			
+			this.eat(token.type);
+			result = opers[token.type](result, this.term());
 		}
 
 		return result;

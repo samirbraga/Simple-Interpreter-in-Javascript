@@ -9,11 +9,11 @@ class Lexer {
 		this.pos = 0;
 		this.currentChar = this.text[this.pos];
 	}
-
+	
 	error() {
 		throw new Error('Error parsing input');
 	}
-
+	
 	advance() {
 		this.pos += 1;
 		if (this.pos > this.text.length - 1) {
@@ -22,7 +22,7 @@ class Lexer {
 			this.currentChar = this.text[this.pos];
 		}
 	}
-
+	
 	skipWhiteSpace () {
 		while (this.currentChar !== null && /\s/g.test(this.currentChar)) {
 			this.advance();
@@ -48,14 +48,17 @@ class Lexer {
 			if (/[0-9]/.test(this.currentChar)) {
 				return new Token(INTEGER, this.integer());
 			}
-			// if (this.currentChar === '+') {
-			// this.advance();
-			// return new Token(PLUS, '+');
-			// }
-			// if (this.currentChar === '-') {
-			// this.advance();
-			// return new Token(MINUS, '-');
-			// }
+
+			if (this.currentChar === '+') {
+				this.advance();
+				return new Token(PLUS, '+');
+			}
+
+			if (this.currentChar === '-') {
+				this.advance();
+				return new Token(MINUS, '-');
+			}
+
 			if (this.currentChar === '*') {
 				this.advance();
 				return new Token(MUL, '*');
