@@ -9,7 +9,7 @@ const rl = readline.createInterface({
 
 function ask () {
     
-    rl.question('calcx> ', (answer) => {
+    rl.question('calc> ', (answer) => {
         let text = answer;
         
         let lexer = new Lexer(text);

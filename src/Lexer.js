@@ -1,7 +1,7 @@
 const tokenTypes = require('./tokenTypes');
 const Token = require('./Token');
 
-let {INTEGER, PLUS, MINUS, MUL, DIV, POW, EOF} = tokenTypes;
+let {INTEGER, PLUS, MINUS, MUL, DIV, POW, LPAREN, RPAREN, EOF} = tokenTypes;
 
 class Lexer {
 	constructor(text) {
@@ -67,6 +67,16 @@ class Lexer {
 			if (this.currentChar === '/') {
 				this.advance();
 				return new Token(DIV, '/');
+			}
+			
+			if (this.currentChar === '(') {
+				this.advance();
+				return new Token(LPAREN, '(');
+			}
+			
+			if (this.currentChar === ')') {
+				this.advance();
+				return new Token(RPAREN, ')');
 			}
 			// if (this.currentChar === '^') {
 			// this.advance(); // return new Token(POW, '^'); // }

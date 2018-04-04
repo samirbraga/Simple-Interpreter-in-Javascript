@@ -1,7 +1,7 @@
 const tokenTypes = require('./tokenTypes');
 const Token = require('./Token');
 
-let {INTEGER, PLUS, MINUS, MUL, DIV, POW, EOF} = tokenTypes;
+let {INTEGER, PLUS, MINUS, MUL, DIV, POW, LPAREN, RPAREN, EOF} = tokenTypes;
 
 let opers = {};
 
@@ -32,8 +32,15 @@ class Interpreter {
 
 	factor() {
 		let token = this.currentToken;
-		this.eat(INTEGER);
-		return token.value;
+		if (token.type == INTEGER) {
+			this.eat(INTEGER);
+			return token.value;
+		} else if (token.type == LPAREN) {
+			this.eat(LPAREN);
+			let result = this.expr();
+			this.eat(RPAREN);
+			return result;
+		}
 	}
 
 	term() {
